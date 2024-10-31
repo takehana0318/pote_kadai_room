@@ -1,0 +1,43 @@
+<h1>新しい施設を作成</h1>
+
+<% if @room.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@room.errors.count, "エラー") %>があります:</h2>
+    <ul>
+      <% @room.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @room, html: { multipart: true } do |f| %>
+  <div class="field">
+    <%= f.label :name, "施設名" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, "紹介文" %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price_per_day, "宿泊料金（/日）" %>
+    <%= f.number_field :price_per_day %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image, "施設画像" %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "作成" %>
+  </div>
+<% end %>

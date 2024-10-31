@@ -1,0 +1,52 @@
+<h1>全施設一覧</h1>
+
+<%= form_with url: search_rooms_path, method: :get, local: true do %>
+  <div class="field">
+    <%= label_tag :area, "エリア検索（東京・大阪・京都・札幌）" %>
+    <%= select_tag :area, options_for_select(['', '東京', '大阪', '京都', '札幌'], params[:area]), prompt: "エリアを選択" %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :keyword, "フリーワード検索（施設名・施設詳細）" %>
+    <%= text_field_tag :keyword, params[:keyword], placeholder: "キーワードを入力" %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "検索" %>
+  </div>
+<% end %>
+
+<%= link_to '施設を作成', new_room_path, class: 'btn btn-primary' %>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>画像</th>
+      <th>施設名</th>
+      <th>紹介文</th>
+      <th>宿泊料金（/日）</th>
+      <th>住所</th>
+      <th>作成日</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rooms.each do |room| %>
+      <tr>
+        <td>
+          <% if room.image.present? %>
+            <%= image_tag room.image.url, size: "100x100" %>
+          <% else %>
+            <%= image_tag "default-room.png", size: "300x300", alt: "デフォルトの施設画像" %>
+          <% end %>
+        </td>
+        <td><%= link_to room.name, room_path(room) %></td>
+        <td><%= room.description %></td>
+        <td><%= number_to_currency(room.price_per_day) %></td>
+        <td><%= room.address %></td>
+        <td><%= room.created_at.strftime("%Y/%m/%d") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

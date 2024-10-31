@@ -1,0 +1,8 @@
+<h1>アカウント情報</h1>
+
+<p><strong>メールアドレス:</strong> <%= current_user.email %></p>
+
+<p><strong>パスワード:</strong> *********</p>
+
+<%= link_to 'アカウント編集', edit_user_registration_path, class: 'btn btn-primary' %>
+<%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>

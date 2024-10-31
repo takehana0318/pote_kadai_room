@@ -1,0 +1,9 @@
+<h1>予約確認</h1>
+
+<p><strong>チェックイン日:</strong> <%= @reservation.check_in %></p>
+<p><strong>チェックアウト日:</strong> <%= @reservation.check_out %></p>
+<p><strong>宿泊日数:</strong> <%= @reservation.stay_duration %>泊</p>
+<p><strong>人数:</strong> <%= @reservation.guests %></p>
+<p><strong>支払い金額:</strong> <%= number_to_currency(@reservation.total_price) %></p>
+
+<%= link_to '施設詳細に戻る', room_path(@reservation.room), class: 'btn btn-secondary' %>

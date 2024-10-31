@@ -1,0 +1,22 @@
+<h1>予約を作成</h1>
+
+<%= form_for [@room, @reservation] do |f| %>
+  <div class="field">
+    <%= f.label :check_in, "チェックイン日" %>
+    <%= f.date_field :check_in %>
+  </div>
+
+  <div class="field">
+    <%= f.label :check_out, "チェックアウト日" %>
+    <%= f.date_field :check_out %>
+  </div>
+
+  <div class="field">
+    <%= f.label :guests, "人数" %>
+    <%= f.number_field :guests, min: 1 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "予約する" %>
+  </div>
+<% end %>
