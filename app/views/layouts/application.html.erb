@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PoteKadaiRoom</title>
+    <title>PoteKadaiRails2</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,8 +9,49 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <a href="/">Potepan Share</a>
+        </div>
+        <% if user_signed_in? %>
+          <div class="dropdown">
+            <!-- チェックボックスの追加（メニュー表示用） -->
+            <input type="checkbox" id="dropdown-toggle" class="dropdown-checkbox">
+            
+            <!-- ラベルをクリックするとチェックボックスが切り替わり、メニューが表示・非表示される -->
+            <label for="dropdown-toggle" class="user-info">
+              <% if current_user.icon.present? %>
+                <%= image_tag current_user.icon.url, size: "40x40", alt: "アイコン画像", class: "user-icon" %>
+              <% else %>
+                <%= image_tag "default_icon.png", size: "40x40", alt: "デフォルトアイコン", class: "user-icon" %>
+              <% end %>
+              <p class="user-name"><%= current_user.name %></p>
+              <span class="dropdown-arrow">▼</span>
+            </label>
+
+            <!-- ドロップダウンメニュー -->
+            <ul class="dropdown-menu">
+              <li><%= link_to '施設の新規登録', new_room_path %></li>
+              <li><%= link_to '予約済み一覧', reservations_path %></li>
+              <li><%= link_to '登録済み一覧', rooms_path %></li>
+              <li><%= link_to 'プロフィール編集', edit_profile_path %></li>
+              <li><%= link_to 'アカウント情報', user_account_path %></li>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </div>
+        <% else %>
+          <div class="auth-links">
+            <%= link_to 'ログイン', new_user_session_path, class: "nav-link" %>
+            <span class="separator">|</span>
+            <%= link_to '新規登録', new_user_registration_path, class: "nav-link" %>
+          </div>
+        <% end %>
+      </div>
+    </header>
+
     <%= yield %>
   </body>
 </html>
+

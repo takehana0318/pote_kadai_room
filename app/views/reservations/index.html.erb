@@ -1,0 +1,40 @@
+<h1>予約一覧</h1>
+
+<% if @reservations.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>画像</th>
+        <th>施設名</th>
+        <th>紹介文</th>
+        <th>合計料金</th>
+        <th>チェックイン日</th>
+        <th>チェックアウト日</th>
+        <th>予約確定日時</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reservations.each do |reservation| %>
+        <tr>
+          <td>
+            <% if reservation.room.image.present? %>
+              <%= image_tag reservation.room.image.url, size: "100x100" %>
+            <% else %>
+              <p>画像なし</p>
+            <% end %>
+          </td>
+          <td><%= link_to reservation.room.name, room_path(reservation.room) %></td>
+          <td><%= reservation.room.description %></td>
+          <td><%= number_to_currency(reservation.total_price) %></td>
+          <td><%= reservation.check_in %></td>
+          <td><%= reservation.check_out %></td>
+          <td><%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>予約した施設はありません。</p>
+<% end %>
+
+<%= link_to '施設一覧に戻る', rooms_path, class: 'btn btn-secondary' %>

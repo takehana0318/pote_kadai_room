@@ -1,0 +1,17 @@
+<h1><%= @room.name %></h1>
+
+<% if @room.image.present? %>
+  <%= image_tag @room.image.url, size: "300x300" %>
+<% else %>
+  <p>画像なし</p>
+<% end %>
+
+<p><strong>紹介文:</strong> <%= @room.description %></p>
+<p><strong>宿泊料金:</strong> <%= number_to_currency(@room.price_per_day) %> /日</p>
+<p><strong>住所:</strong> <%= @room.address %></p>
+<p><strong>作成日:</strong> <%= @room.created_at.strftime("%Y/%m/%d") %></p>
+
+<!-- 予約ページへのリンク -->
+<%= link_to 'この施設を予約する', new_room_reservation_path(@room), class: 'btn btn-primary' %>
+
+<%= link_to '施設一覧に戻る', rooms_path %>

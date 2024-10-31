@@ -13,3 +13,111 @@
  *= require_tree .
  *= require_self
  */
+/* ヘッダー全体のスタイル */
+.header {
+  background-color: #1f1f3a;
+  padding: 10px 20px;
+  color: white;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+}
+
+/* ユーザー情報のスタイル */
+.user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user-icon {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-name {
+  margin: 0;
+  margin-right: 5px;
+}
+
+.dropdown-arrow {
+  font-size: 12px;
+}
+
+/* ドロップダウン全体 */
+.dropdown {
+  position: relative;
+}
+
+/* チェックボックスは非表示にする */
+.dropdown-checkbox {
+  display: none;
+}
+
+/* ドロップダウンメニュー */
+.dropdown-menu {
+  display: none; /* 初期状態で非表示 */
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #333;
+  padding: 10px 0;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 150px;
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #444;
+}
+
+/* チェックボックスがチェックされたときにドロップダウンメニューを表示 */
+.dropdown-checkbox:checked + label + .dropdown-menu {
+  display: block;
+}
+
+
+/* 認証リンクのスタイル */
+.auth-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #3b5998; /* ログインと新規登録リンクの背景色 */
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #2d4373; /* ホバー時の背景色 */
+}
+
+.separator {
+  color: #ffffff;
+  margin: 0 5px;
+}
